@@ -29,3 +29,12 @@ export const getUsuarioFirestore = async (uid: string)=>{
     const docSnap = await getDoc(doc(db, "usuarios", uid));
     return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
 }
+
+//cerrar sesion en Firebase auth
+export const logOut = async () =>{
+    try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Error al cerrar sesión:", error);
+      }
+}

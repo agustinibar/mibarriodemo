@@ -58,6 +58,7 @@ export default function LoginPage() {
           >
             {loading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>
+            <a href="/register">Aun no tienes cuenta? Haz click aquí.</a>
         </form>
       </div>
     </div>
