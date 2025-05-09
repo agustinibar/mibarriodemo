@@ -12,46 +12,50 @@ import {
 } from "lucide-react";
 import { logOut } from "@/Firebase/Handlers/AuthHandler";
 import BlogList from "@/components/Blogs/BlogList";
+import ProblemasList from "@/components/Problematicas/ProblematicasList";
+import PropuestasList from "@/components/Propuestas/PropuestasList";
+import ListaDeContactos from "@/components/Comunicacion/ComunicacionList";
+import ListaDeReportes from "@/components/Reportes/ReportesList";
 
 export default function Dashboard() {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("inicio");
 
   const handleLogout = async () => {
-   try{
-    await logOut();
-   }catch (error){
-    alert("Hubo un error al cerrar seiO se")
-   }
-    router.push("/login");
+    try {
+      await logOut();
+      router.push("/login");
+    } catch (error) {
+      alert("Hubo un error al cerrar sesión");
+    }
   };
 
   const renderContent = () => {
     switch (activeSection) {
       case "problemas":
-        return <div>🛠️ Aquí podrás ver y seguir tus problemáticas o reclamos.</div>;
+        return <div><ProblemasList/></div>;
       case "propuestas":
-        return <div>📌 Visualiza las propuestas del candidato.</div>;
+        return <div><PropuestasList/></div>;
       case "comunicacion":
-        return <div>🤝 Registro de visitas, mensajes y contacto con vecinos.</div>;
+        return <div><ListaDeContactos/></div>;
       case "reportes":
-        return <div>📊 Información clave sobre barrios, reclamos y más.</div>;
+        return <div><ListaDeReportes/></div>;
       default:
         return (
           <div>
             <h2 className="text-2xl font-semibold">Bienvenido a MiBarrioApp 👋</h2>
-            <p className="mt-2 text-gray-700">
-              <BlogList/>
-            </p>
+            <div className="mt-4">
+              <BlogList />
+            </div>
           </div>
         );
     }
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r shadow-md p-4">
+      <aside className="w-64 bg-white border-r shadow-md p-4 h-screen sticky top-0">
         <h1 className="text-xl font-bold text-blue-600 mb-6">MiBarrioApp</h1>
         <nav className="space-y-4">
           <button
@@ -93,8 +97,8 @@ export default function Dashboard() {
         </button>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 p-8">
+      {/* Main Content (scrollable) */}
+      <main className="flex-1 overflow-y-auto max-h-screen p-8">
         {renderContent()}
       </main>
     </div>
