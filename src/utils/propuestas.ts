@@ -18,7 +18,7 @@ export interface Propuesta {
       eje: "Seguridad",
       nivel: "Barrial",
       fecha: "2025-04-25",
-      autor: "Líder Comunitario Javier Camargo",
+      autor: "Líder Comunitario - Javier Camargo",
     },
     {
       id: "2",
@@ -27,7 +27,7 @@ export interface Propuesta {
       eje: "Juventud",
       nivel: "Zonal",
       fecha: "2025-04-27",
-      autor: "Candidato Zonal María Rojas",
+      autor: "Candidato Zonal - María Rojas",
     },
     {
       id: "3",
@@ -36,7 +36,7 @@ export interface Propuesta {
       eje: "Salud",
       nivel: "Estatal",
       fecha: "2025-05-01",
-      autor: "Candidato a la Gobernación Jorge Acevedo",
+      autor: "Candidato a la Gobernación - Jorge Acevedo",
     },
     {
       id: "4",
@@ -45,7 +45,7 @@ export interface Propuesta {
       eje: "Economía",
       nivel: "Nacional",
       fecha: "2025-04-15",
-      autor: "Candidato Presidencial Ana María Contreras",
+      autor: "Candidato Presidencial - Ana María Contreras",
     },
     {
       id: "5",
@@ -54,7 +54,7 @@ export interface Propuesta {
       eje: "Educación",
       nivel: "Barrial",
       fecha: "2025-04-20",
-      autor: "Líder Barrial Carlos Peña",
+      autor: "Líder Barrial - Carlos Peña",
     },
   ];
   

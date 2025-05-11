@@ -2,15 +2,20 @@
 
 "use client";
 
-import { problemas } from "@/utils/problems";
+import { Problema, problemas } from "@/utils/problems";
 
-export default function ProblemasList() {
+type Props = {
+  onSelect: (problema: Problema) => void;
+};
+
+export default function ProblemasList({ onSelect } : Props) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {problemas.map((problema) => (
         <div
           key={problema.id}
           className="bg-white rounded-xl p-5 shadow hover:shadow-md transition-all"
+          onClick={() => onSelect(problema)}
         >
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xl font-semibold">{problema.titulo}</h3>

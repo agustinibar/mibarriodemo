@@ -2,16 +2,15 @@
 
 "use client";
 
-import { contactos } from "@/utils/contacto";
+import { Contacto, contactos } from "@/utils/contacto";
 import { useRouter } from "next/navigation";
 
-export default function ListaDeContactos() {
-  const router = useRouter();
+type Props = {
+  onSelect: (contactos: Contacto)=> void;
+};
 
-  const irAlDetalle = (id: string) => {
-    // Luego lo implementaremos correctamente con dynamic route
-    router.push(`/contactos/${id}`);
-  };
+export default function ListaDeContactos({ onSelect } : Props) {
+  const router = useRouter();
 
   return (
     <div>
@@ -20,7 +19,7 @@ export default function ListaDeContactos() {
         {contactos.map((contacto) => (
           <div
             key={contacto.id}
-            onClick={() => irAlDetalle(contacto.id)}
+            onClick={() => onSelect(contacto)}
             className="bg-white cursor-pointer p-4 rounded-xl shadow hover:shadow-lg transition-all border"
           >
             <h3 className="text-lg font-bold">{contacto.nombre}</h3>

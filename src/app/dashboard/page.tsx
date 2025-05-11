@@ -16,10 +16,16 @@ import ProblemasList from "@/components/Problematicas/ProblematicasList";
 import PropuestasList from "@/components/Propuestas/PropuestasList";
 import ListaDeContactos from "@/components/Comunicacion/ComunicacionList";
 import ListaDeReportes from "@/components/Reportes/ReportesList";
+import ProblematicaDetail from "@/components/Problematicas/ProblematicaDetail";
+import PropuestaDetail from "@/components/Propuestas/PropuestaDetail";
+import ContactoDetail from "@/components/Comunicacion/ContactoDetail";
 
 export default function Dashboard() {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("inicio");
+  const [selectedProblematica, setSelectedProblematica] = useState(null);
+  const [selectedPropuesta, setSelectedPropuesta] = useState(null);
+  const [selectedContacto, setSelectedContacto] = useState(null);
 
   const handleLogout = async () => {
     try {
@@ -33,11 +39,32 @@ export default function Dashboard() {
   const renderContent = () => {
     switch (activeSection) {
       case "problemas":
-        return <div><ProblemasList/></div>;
+        return selectedProblematica ? (
+          <ProblematicaDetail
+            problema={selectedProblematica}
+            onBack={() => setSelectedProblematica(null)}
+          />
+        ) : (
+          <ProblemasList onSelect={setSelectedProblematica} />
+        );
       case "propuestas":
-        return <div><PropuestasList/></div>;
+        return selectedPropuesta ? (
+          <PropuestaDetail
+            propuesta={selectedPropuesta}
+            onBack={() => setSelectedPropuesta(null)}
+          />
+        ) : (
+          <PropuestasList onSelect={setSelectedPropuesta} />
+        );
       case "comunicacion":
-        return <div><ListaDeContactos/></div>;
+        return selectedContacto ? (
+          <ContactoDetail
+            contacto={selectedContacto}
+            onBack={() => setSelectedContacto(null)}
+          />
+        ) : (
+          <ListaDeContactos onSelect={setSelectedContacto} />
+        );
       case "reportes":
         return <div><ListaDeReportes/></div>;
       default:
