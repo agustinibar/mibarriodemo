@@ -3,7 +3,7 @@
 "use client";
 
 import { crearReclamo, obtenerReclamos } from "@/Firebase/Handlers/ProblematicasHandler";
-import { Problema, Problematica } from "@/interfaces/Problematicas";
+import { Problema, Problematica } from "@/interfaces/IProblemas";
 import { useEffect, useState } from "react";
 import ProblematicaFormulario from "./ProblematicaFormulario";
 

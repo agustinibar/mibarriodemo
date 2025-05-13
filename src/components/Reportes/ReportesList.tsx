@@ -9,7 +9,21 @@ import { es } from "date-fns/locale";
 export default function ListaDeReportes() {
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-6 text-blue-700">📊 Reportes del sistema</h2>
+      <h2 className="text-2xl font-semibold text-blue-700">📊 Reportes del sistema</h2>
+      <div className="flex justify-end gap-4 mb-6">
+          <button
+            onClick={() => alert("Formulario de carga de candidato")}
+            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+          >
+            ➕ Cargar Candidato
+          </button>
+          <button
+            onClick={() => alert("Formulario de carga de propuesta")}
+            className="bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition"
+          >
+            📜 Cargar Propuesta
+          </button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {reportes.map((reporte) => (
           <div

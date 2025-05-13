@@ -1,4 +1,4 @@
-import { Problema, Problematica } from "@/interfaces/Problematicas";
+import { Problema, Problematica } from "@/interfaces/IProblemas";
 import { db } from "../config";
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, Timestamp, orderBy, query, onSnapshot } from "firebase/firestore";
 

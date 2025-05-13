@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { crearReclamo } from "@/Firebase/Handlers/ProblematicasHandler";
-import { Problematica } from "@/interfaces/Problematicas";
+import { Problematica } from "@/interfaces/IProblemas";
 
 type Props = {
   onClose: () => void;
