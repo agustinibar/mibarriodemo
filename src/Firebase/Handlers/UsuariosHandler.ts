@@ -16,7 +16,7 @@ export const crearCandidato = async (candidato: Omit<Candidato, "id">) => {
 };
 
 export const obtenerCandidatos = (callback: (data: Candidato[]) => void) => {
-  const q = query(candidatosRef, orderBy("nombre", "asc"));
+  const q = query(usuariosRef, orderBy("nombre", "asc"));
   return onSnapshot(q, (snapshot) => {
     const lista: Candidato[] = [];
     snapshot.forEach((doc) => {

@@ -1,33 +1,43 @@
-// components/Comunicacion/ListaDeContactos.tsx
+// components/Comunicacion/ListaDecandidatos.tsx
 
 "use client";
 
-import { Contacto, contactos } from "@/utils/contacto";
+import { obtenerCandidatos } from "@/Firebase/Handlers/UsuariosHandler";
+import { Candidato } from "@/interfaces/ICandidato";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type Props = {
-  onSelect: (contactos: Contacto)=> void;
+  onSelect: (candidatos: Candidato)=> void;
 };
 
-export default function ListaDeContactos({ onSelect } : Props) {
-  const router = useRouter();
+export default function ListaDecandidatos({ onSelect } : Props) {
+  const [candidatos, setCandidatos] = useState<Candidato[]>([]);
+
+  useEffect(()=>{
+    const unsuscribe = obtenerCandidatos((data)=>{
+      setCandidatos(data)
+    })
+
+    return ()=> unsuscribe();
+  }, []);
 
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-6 text-blue-700">¿Con quién te quieres comunicar?</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {contactos.map((contacto) => (
+        {candidatos.map((candidato) => (
           <div
-            key={contacto.id}
-            onClick={() => onSelect(contacto)}
+            key={candidato.id}
+            onClick={() => onSelect(candidato)}
             className="bg-white cursor-pointer p-4 rounded-xl shadow hover:shadow-lg transition-all border"
           >
-            <h3 className="text-lg font-bold">{contacto.nombre}</h3>
-            <p className="text-sm text-gray-600">{contacto.tipo} · {contacto.zona}</p>
-            {contacto.institucion && (
-              <p className="text-sm text-gray-500 italic">{contacto.institucion}</p>
+            <h3 className="text-lg font-bold">{candidato.nombre}{candidato.apellido}</h3>
+            <p className="text-sm text-gray-600">{candidato.cargo} · {candidato.zona}</p>
+            {candidato.edad && (
+              <p className="text-sm text-gray-500 italic">{candidato.edad} años.  </p>
             )}
-            <p className="mt-2 text-gray-700">{contacto.descripcion}</p>
+            <p className="mt-2 text-gray-700">{candidato.propuestas}</p>
           </div>
         ))}
       </div>
