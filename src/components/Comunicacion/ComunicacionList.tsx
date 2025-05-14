@@ -37,7 +37,7 @@ export default function ListaDecandidatos({ onSelect } : Props) {
             {candidato.edad && (
               <p className="text-sm text-gray-500 italic">{candidato.edad} años.  </p>
             )}
-            <p className="mt-2 text-gray-700">{candidato.propuestas}</p>
+            {/** FALTA LO DE PROPUESTAS */}
           </div>
         ))}
       </div>
