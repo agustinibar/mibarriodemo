@@ -1,6 +1,7 @@
 export type Message = {
 id?: string;
-from: "usuario" | "candidato";
+from: any;
+userName: any;
 text: string;
 timestamp: number;
 };

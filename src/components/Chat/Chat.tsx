@@ -1,5 +1,6 @@
 "use client";
 
+import { auth, db } from "@/Firebase/config";
 import { sendMessage, subscribeToChat } from "@/Firebase/Handlers/MessagesHandler";
 import { Candidato } from "@/interfaces/ICandidato";
 import { Message } from "@/interfaces/IChat";
@@ -9,6 +10,10 @@ import { useEffect, useState } from "react";
 type Props = {
   contacto: Candidato;
 };
+
+const currentUserId = auth.currentUser?.uid;
+const currentUserName = auth.currentUser?.displayName;
+
 
 export default function Chat({ contacto } : Props){
     const [mensajes, setMensajes] = useState<Message[]>([])
@@ -22,7 +27,8 @@ export default function Chat({ contacto } : Props){
   const handleSend = async () => {
     if (!nuevoMensaje.trim()) return;
     await sendMessage(contacto.id, {
-      from: "usuario",
+      from: currentUserId,
+      userName: currentUserName,
       text: nuevoMensaje,
       timestamp: Date.now(),
     });
